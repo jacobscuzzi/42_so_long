@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/22 00:22:52 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/08/24 12:01:05 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ int	on_destroy(t_data *data);
 int	on_keypress(int keysymm, t_data *data);
 
 int	so_long(t_map *map);
-
+void	free_data(t_data *data);
 #endif

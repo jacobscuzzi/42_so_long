@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:06:27 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/22 00:26:10 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/08/24 12:16:37 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,14 @@ int	on_keypress(int keysim, t_data *data)
 {
 	size_t	*pos_row;
 	size_t	*pos_column;
-
+	
+	if (keysim == ESC)
+	{
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_display(data->mlx);
+		free_data(data);
+		exit(1);
+	}
 	pos_row = &(data->map->gamer_pos->row);
 	pos_column = &(data->map->gamer_pos->column);
 	if (keysim == UP && can_move(data->map, UP) == 1)
