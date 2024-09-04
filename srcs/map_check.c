@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 21:47:58 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/21 23:04:04 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:09:24 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,15 @@ int	map_check(t_map *map)
 {
 	int		exit;
 	int		gamer_pos;
-	int		coins;
 
 	exit = count_element(map, EXIT);
 	gamer_pos = count_element(map, GAMER);
-	coins = count_element(map, COIN);
+	map->coins = count_element(map, COIN);
 	if (char_check(map) == 0)
 		return (0);
 	ft_printf("no invalid characters\n");
 	ft_printf("exits:%d, starts:%d, coins %d\n", exit, gamer_pos, coins);
-	if (exit != 1 || gamer_pos != 1 || coins == 0)
+	if (exit != 1 || gamer_pos != 1 || map->coins == 0)
 	{
 		ft_printf("character false\n");
 		return (0);

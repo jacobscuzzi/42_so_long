@@ -23,7 +23,7 @@ MLX_DIR         = ./mlx
 FILES			= \
 				main.c map_init.c map_read.c \
 				map_tools.c map_check.c so_long.c \
-				mlx_tools.c mlx_hooks.c
+				mlx_tools.c mlx_hooks.c graphics.c
 
 SRCS			= $(addprefix $(SRCS_DIR), $(FILES))
 

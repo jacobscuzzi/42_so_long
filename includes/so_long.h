@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/24 12:01:05 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:16:05 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct game_map
 	t_coord	*exit;
 	t_coord	*dim;
 	t_coord	*gamer_pos;
+	int		coins;
 }	t_map;
 
 typedef struct	s_data {
@@ -69,6 +70,7 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 	t_map	*map;
+	t_coord	pos;
 	void	*textures[5];
 	void	*mlx;
 	void	*mlx_win;
@@ -94,12 +96,12 @@ int		count_element(t_map *map, char c);
 t_coord	find_element(t_map *map, char c);
 int		can_move(t_map *map, int direction);
 
+int		on_destroy(t_data *data);
+int		on_keypress(int keysymm, t_data *data);
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
-int	on_destroy(t_data *data);
-int	on_keypress(int keysymm, t_data *data);
-
-int	so_long(t_map *map);
+int		so_long(t_map *map);
 void	free_data(t_data *data);
+
+void draw_window(t_map *map);
+
 #endif
