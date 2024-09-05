@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:06:27 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/05 19:31:44 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/06 01:36:09 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	on_keypress(int keysim, t_data *data)
 		(*pos_column)--;
 	data->move_count++;
 	printf("position: row: %zu, column: %zu\n", *pos_row, *pos_column);
+	draw_window(data);
 	return (0);
 }
