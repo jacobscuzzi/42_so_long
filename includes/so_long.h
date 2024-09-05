@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/05 19:31:07 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/06 01:31:03 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <X11/keysym.h>
 
 
-# define BLOCK_SIZE 32
+# define BLOCK_SIZE 50
 
 # define GAMER 'P'
 # define EXIT 'E'
