@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/04 23:16:05 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/05 19:31:07 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@
 # define RIGHT 65363
 # define RESTART 114
 
-typedef struct game_pixel
-{
-	int		x;
-	int		y;
-	char	type;
-	char	status;
-}	t_pixel;
-
 typedef struct coordinate
 {
 	size_t	row;
@@ -64,16 +56,20 @@ typedef struct game_map
 }	t_map;
 
 typedef struct	s_data {
-	void	*img;
+	void	*mlx;
+	void	*mlx_win;
+	char	*img;
 	char	*addr;
+	int		pxl;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 	t_map	*map;
 	t_coord	pos;
+	char	*gamer_img;
 	void	*textures[5];
-	void	*mlx;
-	void	*mlx_win;
+	int		move_count;
+	
 }	t_data;
 
 
@@ -102,6 +98,6 @@ int		on_keypress(int keysymm, t_data *data);
 int		so_long(t_map *map);
 void	free_data(t_data *data);
 
-void draw_window(t_map *map);
+void	draw_window(t_data *data);
 
 #endif
