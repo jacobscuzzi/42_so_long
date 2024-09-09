@@ -6,13 +6,13 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:08:30 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/22 00:24:20 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/09 06:04:47 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	count_element(t_map *map, char c)
+int	count_element(t_map *map, char c, char **plan)
 {
 	size_t	row;
 	size_t	column;
@@ -25,7 +25,7 @@ int	count_element(t_map *map, char c)
 	{
 		while (column < map->dim->column)
 		{
-			if (map->plan[row][column] == c)
+			if (plan[row][column] == c)
 				counter++;
 			column++;
 		}

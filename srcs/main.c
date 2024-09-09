@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/21 19:54:32 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/06 06:38:09 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	main(int argc, char **argv)
 	map = mapping(argv[1], fd);
 	if (!map)
 		return (1);
+	
 	if (so_long(map) == 1)
 		return (1);
 	return (0);

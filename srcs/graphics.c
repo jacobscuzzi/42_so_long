@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:18:08 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/06 01:44:51 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/06 06:32:35 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_wall(t_data *data)
 		data->pxl * data->pos.row);
 }
 
-void	draw_empty(t_data *data)
+void	draw_floor(t_data *data)
 {
 	data->img = mlx_xpm_file_to_image(data->mlx,
 			"./img/floor.xpm", &data->pxl, &data->pxl);
@@ -61,6 +61,8 @@ void	draw_exit(t_data *data)
 		data->pxl * data->pos.row);
 }
 
+
+/*
 void draw_floor(t_data *data)
 {
     data->pos.row = 0;
@@ -79,11 +81,11 @@ void draw_floor(t_data *data)
 		data->pos.row++;
 	}
 }
+*/
 
 
 void draw_window(t_data *data)
 {
-	draw_floor(data);
 	data->pos.row = 0;
 	while ((data->pos.row) < (data->map->dim->row))
 	{
@@ -92,10 +94,19 @@ void draw_window(t_data *data)
 		{
 			if (data->map->plan[data->pos.row][data->pos.column] == WALL)
 				draw_wall(data);
-			if (data->map->plan[data->pos.row][data->pos.column] == COIN)
+			else if (data->map->plan[data->pos.row][data->pos.column] == COIN)
+			{
+				ft_printf("coin");
+				draw_floor(data);
 				draw_coin(data);
-			if (data->map->plan[data->pos.row][data->pos.column] == EXIT)
+			}
+			else if (data->map->plan[data->pos.row][data->pos.column] == EXIT)
+			{
+				draw_floor(data);
 				draw_exit(data);
+			}
+			else
+				draw_floor(data);
 			data->pos.column++;
 		}
 		data->pos.row++;

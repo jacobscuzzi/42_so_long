@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/06 01:31:03 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/09 06:07:37 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,14 @@ char	**init_plan(t_coord *dim);
 t_map	*new_map(t_coord *dimension);
 
 void	fill_plan(t_map *map, int fd);
+void	clone_plan(char **map_clone, t_map *map);
 
 int		map_check(t_map *map);
 int		wall_check(t_map *map);
 int		char_check(t_map *map);
-int		map_solve(t_map *maps);
+int		map_solve(t_map *map, char **map_clone);
 
-int		count_element(t_map *map, char c);
+int	count_element(t_map *map, char c, char **plan);
 t_coord	find_element(t_map *map, char c);
 int		can_move(t_map *map, int direction);
 
