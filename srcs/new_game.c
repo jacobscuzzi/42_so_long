@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   new_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:22:04 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/21 19:59:03 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:16:28 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,43 +54,53 @@ t_coord *dimension_check(char	*mapfile)
 	return (size);
 }
 
-char	**init_plan(t_coord *dim)
+char	**init_map(t_coord *dim)
 {
-	char		**plan;
+	char		**map;
 	size_t		i;
 
 	ft_printf("Dimension %d * %d \n", dim->row, dim->column);
 	i = 0;
-	plan = (char **)malloc(sizeof(char *) * (dim->column + 1));
-	if (!plan)
+	map = (char **)malloc(sizeof(char *) * (dim->column + 1));
+	if (!map)
 		return (NULL);
-	ft_printf("plan allocated succesfully\n");
 	while (i < dim->row)
 	{
-		plan[i] = (char *)malloc(sizeof(char) * (dim->column + 1));
-		if (!plan[i])
+		map[i] = (char *)malloc(sizeof(char) * (dim->column + 1));
+		if (!map[i])
 			return (NULL);
 		i++;
 	}
-	return (plan);
+	ft_printf("map allocated succesfully\n");
+	return (map);
 }
 
-t_map	*new_map(t_coord *dimension)
+t_data	*new_game(t_coord *dimension)
 {
-	t_map	*map;
+	t_data	*data;
 
-	map = (t_map *)malloc(sizeof (t_map));
-	if (!map)
+	data = (t_data *)malloc(sizeof (t_data));
+	if (!data)
 		return (NULL);
-	map->plan = init_plan(dimension);
-	if (!(map->plan))
+	data->map = init_map(dimension);
+	if (!(data->map))
 		return (NULL);
-	map->gamer_pos = (t_coord *)malloc(sizeof (t_coord));
-	if (!(map->gamer_pos))
+	ft_printf("map stored in data succesfully\n");
+	data->gamer_pos = (t_coord *)malloc(sizeof (t_coord));
+	if (!(data->gamer_pos))
 		return (NULL);
-	map->exit = (t_coord *)malloc(sizeof (t_coord));
-	if (!(map->exit))
+	data->dim = dimension;
+	data->mlx = mlx_init();
+	if(!data->mlx)
 		return (NULL);
-	map->dim = dimension;
-	return (map);
+	data->mlx_win = mlx_new_window(data->mlx, (data->dim->column + 1) * BLOCK_SIZE, (data->dim->row + 1) * BLOCK_SIZE , "Lets play!");
+	if(!data->mlx_win)
+		return (free_data(data), NULL);
+	data->move_count = 0;
+	data->pxl = BLOCK_SIZE;
+	data->pos.row = 0;
+	data->pos.column = 0;
+	data->gamer_img = "./img/gamer.xpm";
+	ft_printf("data allocated succesfully\n");
+	return (data);
 }

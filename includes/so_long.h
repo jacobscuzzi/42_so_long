@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 06:07:37 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:42:57 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,12 @@ typedef struct coordinate
 	size_t	column;
 }	t_coord;
 
-typedef struct game_map
-{
-	char	**plan;
-	t_coord	*exit;
+
+typedef struct	s_data {
+	char	**map;
 	t_coord	*dim;
 	t_coord	*gamer_pos;
 	int		coins;
-}	t_map;
-
-typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_win;
 	char	*img;
@@ -64,7 +60,6 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	t_map	*map;
 	t_coord	pos;
 	char	*gamer_img;
 	void	*textures[5];
@@ -74,30 +69,32 @@ typedef struct	s_data {
 
 
 void	ft_error(int error_type);
-void	print_map(t_map *map);
+void	print_map(t_data *data);
 
 size_t	line_size(char *line);
 t_coord	*dimension_check(char	*mapfile);
-char	**init_plan(t_coord *dim);
-t_map	*new_map(t_coord *dimension);
+char	**init_map(t_coord *dim);
+t_data	*new_game(t_coord *dimension);
 
-void	fill_plan(t_map *map, int fd);
-void	clone_plan(char **map_clone, t_map *map);
+void	fill_map(t_data *data, int fd);
+void	clone_map(char **map_clone, t_data *data);
 
-int		map_check(t_map *map);
-int		wall_check(t_map *map);
-int		char_check(t_map *map);
-int		map_solve(t_map *map, char **map_clone);
+int		map_check(t_data *data);
+int		wall_check(t_data *data);
+int		char_check(t_data *data);
+int		map_solve(t_data *data, char **map_clone);
 
-int	count_element(t_map *map, char c, char **plan);
-t_coord	find_element(t_map *map, char c);
-int		can_move(t_map *map, int direction);
+int	count_element(t_data *data, char c, char **map);
+t_coord	find_element(t_data *data, char c);
+int		can_move(t_data *data, int direction);
 
 int		on_destroy(t_data *data);
 int		on_keypress(int keysymm, t_data *data);
 
-int		so_long(t_map *map);
+int		so_long(t_data *data);
 void	free_data(t_data *data);
+void	end_game(t_data *data);
+
 
 void	draw_window(t_data *data);
 

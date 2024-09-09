@@ -6,13 +6,13 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:51:51 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 05:52:23 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:40:59 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	fill_plan(t_map *map, int fd)
+void	fill_map(t_data *data, int fd)
 {
 	char		*cache;
 	size_t		column;
@@ -20,35 +20,36 @@ void	fill_plan(t_map *map, int fd)
 
 	column = 0;
 	row = 0;
-	while (row < map->dim->row)
+	while (row < data->dim->row)
 	{
 		cache = get_next_line(fd);
-		while (column < map->dim->column)
+		while (column < data->dim->column)
 		{
-			map->plan[row][column] = cache[column];
+			data->map[row][column] = cache[column];
 			column++;
 		}
-		map->plan[row][column] = '\0';
+		data->map[row][column] = '\0';
 		column = 0;
 		row++;
 		free(cache);
 	}
-	ft_printf("Plan filled\n");
+	*data->gamer_pos = find_element(data, GAMER);
+	ft_printf("map filled\n");
 	return ;
 }
 
-void	clone_plan(char **map_clone, t_map *map)
+void	clone_map(char **map_clone, t_data *data)
 {
 	size_t	i;
 	size_t j;
 
 	i = 0;
-	while (i < map->dim->row)
+	while (i < data->dim->row)
 	{
 		j = 0;
-		while (j < map->dim->column)
+		while (j < data->dim->column)
 		{
-			map_clone[i][j] = map->plan[i][j];
+			map_clone[i][j] = data->map[i][j];
 			j++;
 		}
 		i++;

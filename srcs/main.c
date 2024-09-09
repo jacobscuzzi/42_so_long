@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/06 06:38:09 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:51:04 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,58 @@ void	ft_error(int error_type)
 		ft_putstr_fd("Map is not solvable\n", 2);
 }
 
-void	free_map(t_map *map)
+void	free_data(t_data *data)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < map->dim->row)
-		free(map->plan[i++]);
-	free(map->plan);
-	if (map->gamer_pos != NULL)
-		free(map->gamer_pos);
-	if (map->exit != NULL)
-		free(map->exit);
-	free(map);
+	while (i <= data->dim->row)
+		free(data->map[i++]);
+	if (data->map)
+		free(data->map);
+	if (data->gamer_pos != NULL)
+		free(data->gamer_pos);
+	if (data->mlx)
+		free(data->mlx);
+	if (data->mlx_win)
+		free(data->mlx_win);
+	if (data->img)
+		free(data->img);
+	if (data->addr)
+		free(data->addr);
+	if (data->gamer_img)
+		free(data->gamer_img);
+	free(data->textures);
+	free(data);
 }
 
-t_map	*mapping(char *mapfile, int	fd)
+/*
+	typedef struct	s_data {
+	char	**map;
+	t_coord	*dim;
+	t_coord	*gamer_pos;
+	int		coins;
+	void	*mlx;
+	void	*mlx_win;
+	char	*img;
+	char	*addr;
+	int		pxl;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	t_coord	pos;
+	char	*gamer_img;
+	void	*textures[5];
+	int		move_count;
+	
+}	t_data;
+
+*/
+
+t_data	*mapping(char *mapfile, int	fd)
 {
 	t_coord	*dimension;
-	t_map	*map;
+	t_data	*data;
 	int		check;
 
 	dimension = dimension_check(mapfile);
@@ -57,35 +90,35 @@ t_map	*mapping(char *mapfile, int	fd)
 	if (!dimension)
 		return (ft_error(2), NULL);
 	ft_printf("Dimension Test succeed\n");
-	map = new_map(dimension);
+	data = new_game(dimension);
 	ft_printf("Map struct creation\n");
-	if (!map)
+	if (!data)
 		return (free(dimension), ft_error(3), NULL);
-	ft_printf("Map struct succesful created\n");
-	fill_plan(map, fd);
+	ft_printf("data struct succesful created\n");
+	fill_map(data, fd);
 	ft_printf("Filled Map:\n");
-	print_map(map);
+	print_map(data);
 	close(fd);
-	if  (wall_check(map) == 0)
-		return (free_map(map), ft_error(4), NULL);
+	if  (wall_check(data) == 0)
+		return (free_data(data), ft_error(4), NULL);
 	ft_printf("Walls Validated\n");
-	check = map_check(map);
+	check = map_check(data);
 	if (check == 0)
-		return (free_map(map), ft_error(5), NULL);
+		return (free_data(data), ft_error(5), NULL);
 	ft_printf("Characters Validated\n");
 	if (check == -1)
-		return ( free_map(map), ft_error(6), NULL);
+		return ( free_data(data), ft_error(6), NULL);
 	ft_printf("Map Validated (Solvable)\n");
-	return (map);
+	return (data);
 }
 
-void print_map(t_map *map)
+void print_map(t_data *data)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < map->dim->row)
-		ft_printf("%s\n", map->plan[i++]);
+	while (i < data->dim->row)
+		ft_printf("%s\n", data->map[i++]);
 	return ;
 }
 
@@ -93,7 +126,7 @@ void print_map(t_map *map)
 int	main(int argc, char **argv)
 {
 	int		fd;
-	t_map	*map;
+	t_data	*data;
 
 	if (argc != 2)
 		return (ft_error(0), 1);
@@ -101,11 +134,11 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		return (ft_error(1), 1);
 	ft_printf("Map File opened\n");
-	map = mapping(argv[1], fd);
-	if (!map)
+	data = mapping(argv[1], fd);
+	if (!data)
 		return (1);
 	
-	if (so_long(map) == 1)
+	if (so_long(data) == 1)
 		return (1);
 	return (0);
 }
