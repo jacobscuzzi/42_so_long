@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:18:08 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 07:28:54 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:54:56 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	draw_wall(t_data *data)
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->pos.column,
 		data->pxl * data->pos.row);
+	mlx_destroy_image(data->mlx, data->img);
 }
 
 void	draw_floor(t_data *data)
@@ -28,6 +29,7 @@ void	draw_floor(t_data *data)
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->pos.column,
 		data->pxl * data->pos.row);
+	mlx_destroy_image(data->mlx, data->img);
 }
 
 void	draw_coin(t_data *data)
@@ -37,6 +39,7 @@ void	draw_coin(t_data *data)
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->pos.column,
 		data->pxl * data->pos.row);
+	mlx_destroy_image(data->mlx, data->img);
 }
 
 void	draw_gamer(t_data *data)
@@ -46,6 +49,7 @@ void	draw_gamer(t_data *data)
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->gamer_pos->column,
 		data->pxl * data->gamer_pos->row);
+	mlx_destroy_image(data->mlx, data->img);
 }
 
 void	draw_exit(t_data *data)
@@ -59,6 +63,7 @@ void	draw_exit(t_data *data)
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->pos.column,
 		data->pxl * data->pos.row);
+	mlx_destroy_image(data->mlx, data->img);
 }
 
 
@@ -71,7 +76,7 @@ void draw_floor(t_data *data)
 		data->pos.column = 0;
 		while ((data->pos.column) < (data->dim->column))
 		{
-			data->img = mlx_xpm_file_to_image(data->mlx, "./img/floor.xpm", 
+			data->img = mlx_xpm_file_to_image(data->mlx, "./img/floor.xpm",
 				&data->pxl, &data->pxl);
 			mlx_put_image_to_window (data->mlx, data->mlx_win,
 				data->img, data->pxl * data->pos.column,
@@ -113,4 +118,4 @@ void draw_window(t_data *data)
 	}
 	draw_gamer(data);
 	ft_printf("Movements: %d\n", data->move_count);
-}   
+}

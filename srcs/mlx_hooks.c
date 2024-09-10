@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:06:27 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 07:27:26 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:55:03 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	on_destroy(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	exit(0);
+	free_data(data);
+	exit(1);
 	return (0);
 }
 
@@ -41,13 +41,11 @@ int	on_keypress(int keysim, t_data *data)
 {
 	size_t	*pos_row;
 	size_t	*pos_column;
-	
+
 	if (keysim == ESC)
 	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		mlx_destroy_display(data->mlx);
-		free_data(data);
-		exit(1);
+		on_destroy(data);
+		return (0);
 	}
 	pos_row = &(data->gamer_pos->row);
 	pos_column = &(data->gamer_pos->column);

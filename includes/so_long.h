@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 19:42:57 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:39:08 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define D 100
 # define RIGHT 65363
 # define RESTART 114
+# define NBR_TEXTURES 5
 
 typedef struct coordinate
 {
@@ -62,9 +63,9 @@ typedef struct	s_data {
 	int		endian;
 	t_coord	pos;
 	char	*gamer_img;
-	void	*textures[5];
+	void	*textures[NBR_TEXTURES];
 	int		move_count;
-	
+
 }	t_data;
 
 

@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 19:51:04 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:59:14 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,21 @@ void	ft_error(int error_type)
 void	free_data(t_data *data)
 {
 	size_t	i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	while (i <= data->dim->row)
 		free(data->map[i++]);
 	if (data->map)
 		free(data->map);
 	if (data->gamer_pos != NULL)
 		free(data->gamer_pos);
-	if (data->mlx)
-		free(data->mlx);
-	if (data->mlx_win)
-		free(data->mlx_win);
-	if (data->img)
-		free(data->img);
-	if (data->addr)
-		free(data->addr);
-	if (data->gamer_img)
-		free(data->gamer_img);
+	// if (data->addr)
+	// 	free(data->addr);
+	// if (data->gamer_img)
+	// 	free(data->gamer_img);
+	while (j < NBR_TEXTURES)
 	free(data->textures);
 	free(data);
 }
@@ -74,7 +71,7 @@ void	free_data(t_data *data)
 	char	*gamer_img;
 	void	*textures[5];
 	int		move_count;
-	
+
 }	t_data;
 
 */
@@ -137,7 +134,7 @@ int	main(int argc, char **argv)
 	data = mapping(argv[1], fd);
 	if (!data)
 		return (1);
-	
+
 	if (so_long(data) == 1)
 		return (1);
 	return (0);

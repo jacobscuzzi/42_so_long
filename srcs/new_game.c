@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:22:04 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 19:16:28 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:02:49 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ t_coord *dimension_check(char	*mapfile)
 	return (size);
 }
 
+void	free_all(char **arr)
+{
+	int		i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
 char	**init_map(t_coord *dim)
 {
 	char		**map;
@@ -68,7 +78,7 @@ char	**init_map(t_coord *dim)
 	{
 		map[i] = (char *)malloc(sizeof(char) * (dim->column + 1));
 		if (!map[i])
-			return (NULL);
+			return (free_all(map), NULL);
 		i++;
 	}
 	ft_printf("map allocated succesfully\n");
