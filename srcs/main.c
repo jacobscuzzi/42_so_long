@@ -38,7 +38,7 @@ void	free_data(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (i <= data->dim->row)
+	while (i < data->dim->row)
 		free(data->map[i++]);
 	if (data->map)
 		free(data->map);
@@ -49,7 +49,11 @@ void	free_data(t_data *data)
 	// if (data->gamer_img)
 	// 	free(data->gamer_img);
 	while (j < NBR_TEXTURES)
-	free(data->textures);
+	{
+		if (data->textures[j])
+            free(data->textures[j]);
+		j++;
+	}
 	free(data);
 }
 
