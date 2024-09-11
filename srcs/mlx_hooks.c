@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:06:27 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/11 19:20:07 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:17:39 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,13 @@ void	location_check(t_data *data, size_t *row, size_t *column)
 void	gamer_moves(t_data *data, int direction )
 {
 	if (direction == UP)
-	{
-		
-		(data->gamer_pos->row)--;
-	}
+		gamer_up(data);
 	if (direction == DOWN)
-	{
-		(data->gamer_pos->row)++;
-	}
+		gamer_down(data);
 	if (direction == RIGHT)
-	{
-		(data->gamer_pos->column)++;
-	}
+		gamer_right(data);
 	if (direction == LEFT)
-	{
-		(data->gamer_pos->column)--;
-	}
+		gamer_left(data);
 }
 
 int	on_keypress(int keysim, t_data *data)

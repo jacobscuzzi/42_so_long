@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/10 19:59:14 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:07:42 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	free_data(t_data *data)
 
 */
 
-t_data	*mapping(char *mapfile, int	fd)
+t_data	*mapping(char *mapfile, int fd)
 {
 	t_coord	*dimension;
 	t_data	*data;
@@ -113,7 +113,7 @@ t_data	*mapping(char *mapfile, int	fd)
 	return (data);
 }
 
-void print_map(t_data *data)
+void	print_map(t_data *data)
 {
 	size_t	i;
 
@@ -138,7 +138,6 @@ int	main(int argc, char **argv)
 	data = mapping(argv[1], fd);
 	if (!data)
 		return (1);
-
 	if (so_long(data) == 1)
 		return (1);
 	return (0);

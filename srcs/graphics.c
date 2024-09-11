@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:18:08 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/11 19:20:46 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:35:20 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ void	draw_coin(t_data *data)
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->pos.column,
 		data->pxl * data->pos.row);
-	mlx_destroy_image(data->mlx, data->img);
-}
-
-void	draw_gamer(t_data *data)
-{
-	data->img = mlx_xpm_file_to_image(data->mlx,
-			data->gamer_img, &data->pxl, &data->pxl);
-	mlx_put_image_to_window (data->mlx, data->mlx_win,
-		data->img, data->pxl * data->gamer_pos->column,
-		data->pxl * data->gamer_pos->row);
 	mlx_destroy_image(data->mlx, data->img);
 }
 

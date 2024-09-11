@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/11 17:51:00 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:16:40 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,10 @@
 // KEY CODES
 
 # define ESC 65307
-# define W 119
-# define UP 65362
-# define A 97
-# define LEFT 65361
-# define S 115
-# define DOWN 65364
-# define D 100
-# define RIGHT 65363
+# define UP 119
+# define LEFT 97
+# define DOWN 115
+# define RIGHT 100
 # define RESTART 114
 
 
@@ -49,7 +45,8 @@ typedef struct coordinate
 }	t_coord;
 
 
-typedef struct	s_data {
+typedef struct s_data
+{
 	char	**map;
 	t_coord	*dim;
 	t_coord	*gamer_pos;
@@ -99,6 +96,11 @@ void	end_game(t_data *data);
 
 
 void	draw_window(t_data *data);
+
 void	draw_gamer(t_data *data);
+void	gamer_up(t_data *data);
+void	gamer_down(t_data *data);
+void	gamer_left(t_data *data);
+void	gamer_right(t_data *data);
 
 #endif
