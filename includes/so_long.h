@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/10 19:39:08 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:51:00 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 
 # define BLOCK_SIZE 50
+# define NBR_TEXTURES 14
 
 # define GAMER 'P'
 # define EXIT 'E'
@@ -39,7 +40,7 @@
 # define D 100
 # define RIGHT 65363
 # define RESTART 114
-# define NBR_TEXTURES 5
+
 
 typedef struct coordinate
 {
@@ -98,5 +99,6 @@ void	end_game(t_data *data);
 
 
 void	draw_window(t_data *data);
+void	draw_gamer(t_data *data);
 
 #endif

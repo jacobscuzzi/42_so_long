@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:18:08 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/10 19:54:56 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:20:46 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	draw_exit(t_data *data)
 {
 	if (data->coins == 0)
 		data->img = mlx_xpm_file_to_image(data->mlx,
-				"./img/exit.xpm", &data->pxl, &data->pxl);
+				"./img/peach_exit.xpm", &data->pxl, &data->pxl);
 	else
 		data->img = mlx_xpm_file_to_image(data->mlx,
-				"./img/exit.xpm", &data->pxl, &data->pxl);
+				"./img/closed_exit.xpm", &data->pxl, &data->pxl);
 	mlx_put_image_to_window (data->mlx, data->mlx_win,
 		data->img, data->pxl * data->pos.column,
 		data->pxl * data->pos.row);
@@ -101,7 +101,6 @@ void draw_window(t_data *data)
 				draw_wall(data);
 			else if (data->map[data->pos.row][data->pos.column] == COIN)
 			{
-				ft_printf("coin");
 				draw_floor(data);
 				draw_coin(data);
 			}
@@ -116,6 +115,5 @@ void draw_window(t_data *data)
 		}
 		data->pos.row++;
 	}
-	draw_gamer(data);
 	ft_printf("Movements: %d\n", data->move_count);
 }
