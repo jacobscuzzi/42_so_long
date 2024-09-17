@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 21:47:58 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/09 19:35:12 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:49:45 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,8 @@ int	map_check(t_data *data)
 	clone_map(map_clone, data);
 	ft_printf("map cloneification succesfully executed\n");
 	if (map_solve(data, map_clone) == 0)
-		return (-1);
+		return (free_all(map_clone, *data->dim), -1);
+	free_all(map_clone, *data->dim);
 	ft_printf("map tested as solvable\n");
 	return (1);
 }

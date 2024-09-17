@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/11 21:07:42 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:02:53 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	ft_error(int error_type)
 		ft_putstr_fd("Map has invalid, missing or double* characters\n", 2);
 	if (error_type == 6)
 		ft_putstr_fd("Map is not solvable\n", 2);
+	if (error_type == 7)
+			ft_putstr_fd("Error while reading Mapfile\n", 2);
+
 }
 
 void	free_data(t_data *data)
@@ -38,23 +41,22 @@ void	free_data(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (i < data->dim->row)
-		free(data->map[i++]);
-	if (data->map)
-		free(data->map);
-	if (data->gamer_pos != NULL)
-		free(data->gamer_pos);
+	free_all(data->map, *data->dim);
+	free(data->gamer_pos);
 	// if (data->addr)
 	// 	free(data->addr);
-	// if (data->gamer_img)
-	// 	free(data->gamer_img);
-	while (j < NBR_TEXTURES)
-	{
-		if (data->textures[j])
-            free(data->textures[j]);
-		j++;
-	}
+	free(data->mlx);
+	free(data->dim);
 	free(data);
+}
+void	free_all(char **arr, t_coord dim)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < dim.row)
+		free(arr[i++]);
+	free(arr);
 }
 
 /*
@@ -96,9 +98,9 @@ t_data	*mapping(char *mapfile, int fd)
 	if (!data)
 		return (free(dimension), ft_error(3), NULL);
 	ft_printf("data struct succesful created\n");
-	fill_map(data, fd);
+	if (fill_map(data, fd) == 1)
+		return (free_data(data), ft_error(7), NULL);
 	ft_printf("Filled Map:\n");
-	print_map(data);
 	close(fd);
 	if  (wall_check(data) == 0)
 		return (free_data(data), ft_error(4), NULL);
@@ -113,15 +115,15 @@ t_data	*mapping(char *mapfile, int fd)
 	return (data);
 }
 
-void	print_map(t_data *data)
-{
-	size_t	i;
+// void	print_map(t_data *data)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (i < data->dim->row)
-		ft_printf("%s\n", data->map[i++]);
-	return ;
-}
+// 	i = 0;
+// 	while (i < data->dim->row)
+// 		ft_printf("%s\n", data->map[i++]);
+// 	return ;
+// }
 
 
 int	main(int argc, char **argv)
@@ -138,7 +140,6 @@ int	main(int argc, char **argv)
 	data = mapping(argv[1], fd);
 	if (!data)
 		return (1);
-	if (so_long(data) == 1)
-		return (1);
+	so_long(data);
 	return (0);
 }

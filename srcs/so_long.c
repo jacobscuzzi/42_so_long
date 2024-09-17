@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:34:20 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/10 19:42:24 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:39:11 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void end_game(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_window(data->mlx, data->mlx_win);
 		mlx_destroy_display(data->mlx);
 		free_data(data);
 		exit(1);
 }
-int	so_long(t_data *data)
+void	so_long(t_data *data)
 {
 	draw_window(data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &on_keypress, data);
@@ -29,5 +29,5 @@ int	so_long(t_data *data)
 	// mlx_destroy_window(data->mlx, data->mlx_win);
 	// mlx_destroy_display(data->mlx);
 	exit(0);
-	return (0);
+	return ;
 }

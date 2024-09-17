@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/11 21:16:40 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:40:17 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 
 # define BLOCK_SIZE 50
-# define NBR_TEXTURES 14
 
 # define GAMER 'P'
 # define EXIT 'E'
@@ -60,8 +59,7 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 	t_coord	pos;
-	char	*gamer_img;
-	void	*textures[NBR_TEXTURES];
+	int		frame_counter;
 	int		move_count;
 
 }	t_data;
@@ -74,8 +72,9 @@ size_t	line_size(char *line);
 t_coord	*dimension_check(char	*mapfile);
 char	**init_map(t_coord *dim);
 t_data	*new_game(t_coord *dimension);
+void	free_all(char **arr, t_coord dim);
 
-void	fill_map(t_data *data, int fd);
+int		fill_map(t_data *data, int fd);
 void	clone_map(char **map_clone, t_data *data);
 
 int		map_check(t_data *data);
@@ -90,7 +89,7 @@ int		can_move(t_data *data, int direction);
 int		on_destroy(t_data *data);
 int		on_keypress(int keysymm, t_data *data);
 
-int		so_long(t_data *data);
+void	so_long(t_data *data);
 void	free_data(t_data *data);
 void	end_game(t_data *data);
 

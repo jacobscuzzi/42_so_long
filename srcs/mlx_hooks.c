@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:06:27 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/11 21:17:39 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:04:01 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	location_check(t_data *data, size_t *row, size_t *column)
 	{
 		data->map[*row][*column] = EMPTY;
 		data->coins--;
+		draw_gamer(data);
 	}
 	if (data->map[*row][*column] == EXIT)
 	{

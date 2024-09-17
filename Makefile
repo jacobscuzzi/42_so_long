@@ -23,8 +23,7 @@ MLX_DIR         = ./mlx
 FILES			= \
 				main.c new_game.c map_read.c \
 				map_tools.c map_check.c so_long.c \
-				mlx_tools.c mlx_hooks.c graphics.c \
-				graphics2.c 
+				mlx_hooks.c graphics.c graphics2.c 
 
 SRCS			= $(addprefix $(SRCS_DIR), $(FILES))
 
@@ -39,8 +38,6 @@ $(NAME): $(LIBFT)
 		@make -C $(MLX_DIR)
 		$(CC) $(SRCS) $(LIBFT) ${STANDARD_FLAGS} ${MLX_FLAGS} -o ${NAME}
 
-vallgrind:
-		valgrind --leak-check=full ./so_long map/map_standard.bar
 clean:
 		make clean -C libft
 		@make clean -C $(LIBFT_PATH)
@@ -59,4 +56,7 @@ rebonus:	fclean ${NAME_BONUS}
 run:		${NAME}
 			${VALGRIND} ./${NAME} assets/maps/valid/map4.ber
 
-.PHONY:		all clean fclean re rebonus valgrind run run_bonus
+vallgrind:	all
+			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) map/map_standard.bar
+
+.PHONY:		all clean fclean re rebonus valgrind run run_bonus vallgrind
