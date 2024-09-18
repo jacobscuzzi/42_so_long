@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/16 17:02:53 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 00:28:58 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,26 +91,26 @@ t_data	*mapping(char *mapfile, int fd)
 	dimension = dimension_check(mapfile);
 	ft_printf("Dimension Test run\n");
 	if (!dimension)
-		return (ft_error(2), NULL);
+		return (ft_error(2), free(dimension), NULL);
 	ft_printf("Dimension Test succeed\n");
 	data = new_game(dimension);
 	ft_printf("Map struct creation\n");
 	if (!data)
-		return (free(dimension), ft_error(3), NULL);
+		return (ft_error(3), free(dimension), NULL);
 	ft_printf("data struct succesful created\n");
 	if (fill_map(data, fd) == 1)
-		return (free_data(data), ft_error(7), NULL);
+		return (ft_error(7), end_game(data), NULL);
 	ft_printf("Filled Map:\n");
 	close(fd);
 	if  (wall_check(data) == 0)
-		return (free_data(data), ft_error(4), NULL);
+		return (ft_error(4), end_game(data), NULL);
 	ft_printf("Walls Validated\n");
 	check = map_check(data);
 	if (check == 0)
-		return (free_data(data), ft_error(5), NULL);
+		return (ft_error(5), end_game(data),  NULL);
 	ft_printf("Characters Validated\n");
 	if (check == -1)
-		return ( free_data(data), ft_error(6), NULL);
+		return (ft_error(6), end_game(data),  NULL);
 	ft_printf("Map Validated (Solvable)\n");
 	return (data);
 }
@@ -138,7 +138,7 @@ int	main(int argc, char **argv)
 		return (ft_error(1), 1);
 	ft_printf("Map File opened\n");
 	data = mapping(argv[1], fd);
-	if (!data)
+	if (data == NULL)
 		return (1);
 	so_long(data);
 	return (0);

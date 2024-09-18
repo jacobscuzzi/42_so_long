@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:34:22 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/17 00:45:33 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/18 22:57:46 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,22 @@ char	*trim_mem(char *mem, int finder)
 
 	if (finder == -1 || finder == 0)
 	{
-		free (mem);
+		free(mem);
+		mem = NULL;
 		return (NULL);
 	}
 	if ((int)ft_strlen(mem) > finder)
-	{
 		new = ft_strdup(mem + finder);
-	}
 	else
 		new = ft_strdup("");
-	free(mem);
 	if (!new)
+	{
+		free(mem);
+		mem = NULL;
 		return (NULL);
+	}
+	free(mem);
+	mem = NULL;
 	return (new);
 }
 
@@ -55,6 +59,8 @@ int	fill_mem(int fd, int *finder, char **mem)
 		temp = ft_strjoin(*mem, buf);
 		if (!temp)
 			return (free(buf), -1);
+		if (*mem)
+			free(*mem);
 		*mem = temp;
 		*finder = ft_strchr_pos(*mem, '\n');
 	}

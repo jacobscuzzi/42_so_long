@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:51:51 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/17 00:30:07 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/18 22:59:20 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	fill_map(t_data *data, int fd)
 		row++;
 		free(cache);
 	}
+	(void)get_next_line(fd);
 	*data->gamer_pos = find_element(data, GAMER);
 	return (0);
 }

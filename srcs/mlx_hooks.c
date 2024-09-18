@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:06:27 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/16 11:04:01 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/17 21:30:06 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ int	on_keypress(int keysim, t_data *data)
 		gamer_moves(data , LEFT);
 	data->move_count++;
 	location_check(data, &data->gamer_pos->row, &data->gamer_pos->column);
-	draw_window(data);
-	draw_gamer(data);
 	return (0);
 }
