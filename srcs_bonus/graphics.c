@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:18:08 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:50:41 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:34:20 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	draw_window(t_data *data)
 		}
 		data->pos.row++;
 	}
-	ft_printf("Movements: %d\n", data->move_count);
+	draw_score(data);
 }

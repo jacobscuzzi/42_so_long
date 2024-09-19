@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:08:30 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 07:28:51 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:28:34 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,12 @@ int	bowser_can(t_data *data, int direction)
 }
 void	draw_score(t_data *data)
 {
-	char *counter;
+	char	*movements;
+	char 	*counter;
 
-	counter = (char *)malloc(12);
-	counter = ft_itoa(data->move_count);
-	counter = ft_strjoin("Move Count:", counter);
+	movements = ft_itoa(data->move_count);
+	counter = ft_strjoin("Move Count:", movements);
+	free(movements);
 	mlx_string_put(data->mlx, data->mlx_win, BLOCK_SIZE * (data->dim->column - 2), BLOCK_SIZE * 0.5, 0x000000, counter);
+	free(counter);
 }

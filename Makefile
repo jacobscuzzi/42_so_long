@@ -75,7 +75,10 @@ rebonus:	fclean ${BONUS}
 run:		${NAME}
 			${VALGRIND} ./${NAME} assets/maps/valid/map4.ber
 
-vallgrind:
+valgrind:
 			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) map/map_standard.bar
+
+valbonus:
+			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(BONUS) map/bonus/level_3.bar
 
 .PHONY:		all clean fclean re rebonus valgrind run run_bonus vallgrind
