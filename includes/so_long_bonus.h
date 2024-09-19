@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/18 21:13:59 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 07:11:28 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
@@ -26,6 +26,7 @@
 # define COIN 'C'
 # define WALL '1'
 # define EMPTY '0'
+# define BOWSER 'B'
 
 // KEY CODES
 
@@ -49,6 +50,7 @@ typedef struct s_data
 	char	**map;
 	t_coord	*dim;
 	t_coord	*gamer_pos;
+	t_coord	*bowser_pos;
 	int		coins;
 	void	*mlx;
 	void	*mlx_win;
@@ -82,9 +84,11 @@ int		wall_check(t_data *data);
 int		char_check(t_data *data);
 int		map_solve(t_data *data, char **map_clone);
 
-int	count_element(t_data *data, char c, char **map);
+int		count_element(t_data *data, char c, char **map);
 t_coord	find_element(t_data *data, char c);
 int		can_move(t_data *data, int direction);
+int		bowser_can(t_data *data, int direction);
+void	draw_score(t_data *data);
 
 int		on_destroy(t_data *data);
 int		on_keypress(int keysymm, t_data *data);
@@ -101,5 +105,13 @@ void	gamer_up(t_data *data);
 void	gamer_down(t_data *data);
 void	gamer_left(t_data *data);
 void	gamer_right(t_data *data);
+
+void	in_love(t_data *data);
+void	draw_bowser(t_data *data);
+void	bowser_up(t_data *data);
+void	bowser_down(t_data *data);
+void	bowser_right(t_data *data);
+void	bowser_left(t_data *data);
+
 
 #endif

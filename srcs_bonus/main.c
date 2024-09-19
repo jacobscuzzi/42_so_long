@@ -6,11 +6,11 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:26:49 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 04:36:02 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	ft_error(int error_type)
 {
@@ -42,6 +42,7 @@ void	free_data(t_data *data)
 	j = 0;
 	free_all(data->map, *data->dim);
 	free(data->gamer_pos);
+	free(data->bowser_pos);
 	free(data->mlx);
 	free(data->dim);
 	free(data);

@@ -1,4 +1,6 @@
-NAME 			= so_long
+NAME			= so_long
+
+BONUS			= so_long_bonus
 
 CC				= clang
 
@@ -18,6 +20,8 @@ REMOVE = rm -f
 
 SRCS_DIR = ./srcs/
 
+BONUS_DIR = ./srcs_bonus/
+
 MLX_DIR         = ./mlx
 
 FILES			= \
@@ -25,7 +29,16 @@ FILES			= \
 				map_tools.c map_check.c so_long.c \
 				mlx_hooks.c graphics.c graphics2.c
 
+FILES_BONUS		= \
+				main.c new_game.c map_read.c \
+				map_tools.c map_check.c so_long.c \
+				mlx_hooks.c graphics.c graphics2.c \
+				graphics3.c
+
+
 SRCS			= $(addprefix $(SRCS_DIR), $(FILES))
+
+SRCS_BONUS		=$(addprefix $(BONUS_DIR), $(FILES_BONUS))
 
 all : ${NAME}
 
@@ -38,25 +51,31 @@ $(NAME): $(LIBFT)
 		@make -C $(MLX_DIR)
 		$(CC) $(SRCS) $(LIBFT) ${STANDARD_FLAGS} ${MLX_FLAGS} -o ${NAME}
 
+$(BONUS): $(LIBFT)
+		@make -C $(MLX_DIR)
+		$(CC) $(SRCS_BONUS) $(LIBFT) ${STANDARD_FLAGS} ${MLX_FLAGS} -o ${BONUS}
+
+bonus : $(BONUS)
+
 clean:
 		make clean -C libft
 		@make clean -C $(LIBFT_PATH)
 		@make clean -C $(MLX_DIR)
 
 fclean:
-		${REMOVE} ${NAME} ${NAME_BONUS}
+		${REMOVE} ${NAME} ${BONUS}
 		@make fclean -C $(LIBFT_PATH)
 		@make clean -C $(MLX_DIR)
 		@echo "${NAME}: ${NAME} were deleted${RESET}"
 
 re:			clean all
 
-rebonus:	fclean ${NAME_BONUS}
+rebonus:	fclean ${BONUS}
 
 run:		${NAME}
 			${VALGRIND} ./${NAME} assets/maps/valid/map4.ber
 
 vallgrind:
-			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) map/invalid/error_not_solvable.bar
+			@valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) map/map_standard.bar
 
 .PHONY:		all clean fclean re rebonus valgrind run run_bonus vallgrind

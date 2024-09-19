@@ -6,11 +6,11 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 21:47:58 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:29:53 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 04:43:52 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	wall_check(t_data *data)
 {
@@ -49,7 +49,7 @@ int	char_check(t_data *data)
 	{
 		while (column < data->dim->column)
 		{
-			if (ft_strchr("01EPC", data->map[row][column]) == NULL)
+			if (ft_strchr("01EPCB", data->map[row][column]) == NULL)
 				return (0);
 			column++;
 		}
@@ -61,7 +61,7 @@ int	char_check(t_data *data)
 
 void	map_flood(char **map_clone, t_coord *dim, size_t row, size_t column)
 {
-	if (!(ft_strchr("0PCE", map_clone[row][column])))
+	if (!(ft_strchr("0PCEB", map_clone[row][column])))
 		return ;
 	if (row >= dim->row)
 		return ;
@@ -94,14 +94,18 @@ int	map_check(t_data *data)
 {
 	int		exit;
 	int		gamer_pos;
+	int		bowser_pos;
 	char	**map_clone;
 
 	exit = count_element(data, EXIT, data->map);
 	gamer_pos = count_element(data, GAMER, data->map);
+	bowser_pos = count_element(data, BOWSER, data->map);
 	data->coins = count_element(data, COIN, data->map);
 	if (char_check(data) == 0)
 		return (0);
 	if (exit != 1 || gamer_pos != 1 || data->coins == 0)
+		return (0);
+	if (bowser_pos != 1)
 		return (0);
 	map_clone = init_map(data->dim);
 	if (!map_clone)

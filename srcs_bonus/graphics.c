@@ -6,11 +6,11 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:18:08 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:34:40 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:50:41 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	draw_wall(t_data *data)
 {

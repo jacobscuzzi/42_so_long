@@ -6,11 +6,11 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:35:35 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:35:00 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:52:50 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	draw_gamer(t_data *data)
 {

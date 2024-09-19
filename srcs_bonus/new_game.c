@@ -6,11 +6,11 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:22:04 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:33:08 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/19 04:35:20 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 size_t	line_size(char *row)
 {
@@ -89,6 +89,9 @@ t_data	*new_game(t_coord *dimension)
 	ft_printf("map stored in data succesfully\n");
 	data->gamer_pos = (t_coord *)malloc(sizeof (t_coord));
 	if (!(data->gamer_pos))
+		return (NULL);
+	data->bowser_pos = (t_coord *)malloc(sizeof (t_coord));
+	if (!(data->bowser_pos))
 		return (NULL);
 	data->dim = dimension;
 	data->mlx = mlx_init();
