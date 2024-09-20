@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:22:04 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 01:33:08 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 21:41:44 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,46 @@ void	column_count(char *row, t_coord	*size)
 	size->row = 1;
 }
 
-t_coord	*dimension_check(char	*mapfile)
+int	row_check(t_coord *s, char *row, int fd)
 {
-	int		fd;
-	t_coord	*size;
-	char	*row;
+	int	error;
 
-	size = (t_coord *)malloc(sizeof(t_coord));
-	if (!size)
-		return (NULL);
-	fd = open(mapfile, O_RDONLY);
-	if (fd == -1)
-		return (close(fd), free(size), NULL);
-	row = get_next_line(fd);
-	if (!row)
-		return (close(fd), free(size), NULL);
-	column_count(row, size);
-	free(row);
-	row = get_next_line(fd);
+	error = 0;
 	while (row != NULL)
 	{
-		if (line_size(row) != size->column)
-			return (free(size), free(row), close(fd), NULL);
-		size->row++;
+		if (line_size(row) != s->column)
+			error = 1;
+		s->row++;
 		free(row);
 		row = get_next_line(fd);
 	}
-	return (close(fd), free(row), size);
+	return (error);
+}
+
+t_coord	*dimension_check(char	*mapfile)
+{
+	int		fd;
+	t_coord	*s;
+	char	*row;
+	int		error;
+
+	s = (t_coord *)malloc(sizeof(t_coord));
+	if (!s)
+		return (NULL);
+	fd = open(mapfile, O_RDONLY);
+	if (fd == -1)
+		return (close(fd), free(s), NULL);
+	row = get_next_line(fd);
+	if (!row)
+		return (close(fd), free(s), NULL);
+	column_count(row, s);
+	free(row);
+	row = get_next_line(fd);
+	error = row_check(s, row, fd);
+	if (error == 1)
+		return (close(fd), free(s), NULL);
+	else
+		return (close(fd), s);
 }
 
 char	**init_map(t_coord *dim)

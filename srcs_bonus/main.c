@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:04:56 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 04:36:02 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:11:11 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,16 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_data	*data;
+	int		i;
 
 	if (argc != 2)
 		return (ft_error(0), 1);
+	i = ft_strlen(argv[1]) - 1;
+	if (!(argv[1][i] == 'r' && argv[1]
+		[i - 1] == 'e' && argv[1][i - 2] == 'b' && argv[1][i - 3] == '.'))
+		return (ft_error(8), 1);
+	if(argv[1][i - 4] == '/')
+		return (ft_error(8), 1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_error(1), 1);

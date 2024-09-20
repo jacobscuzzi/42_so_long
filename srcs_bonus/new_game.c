@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:22:04 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/20 18:35:43 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:28:07 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_coord	*dimension_check(char	*mapfile)
 		free(row);
 		row = get_next_line(fd);
 	}
+	(void)get_next_line(fd);
 	return (close(fd), free(row), size);
 }
 
