@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 07:11:28 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:27:13 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../libft/includes/libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
-
 
 # define BLOCK_SIZE 50
 
@@ -37,13 +36,11 @@
 # define RIGHT 100
 # define RESTART 114
 
-
 typedef struct coordinate
 {
 	size_t	row;
 	size_t	column;
 }	t_coord;
-
 
 typedef struct s_data
 {
@@ -63,9 +60,7 @@ typedef struct s_data
 	t_coord	pos;
 	int		frame_counter;
 	int		move_count;
-
 }	t_data;
-
 
 void	ft_error(int error_type);
 void	print_map(t_data *data);
@@ -97,7 +92,6 @@ void	so_long(t_data *data);
 void	free_data(t_data *data);
 void	end_game(t_data *data);
 
-
 void	draw_window(t_data *data);
 
 void	draw_gamer(t_data *data);
@@ -112,6 +106,5 @@ void	bowser_up(t_data *data);
 void	bowser_down(t_data *data);
 void	bowser_right(t_data *data);
 void	bowser_left(t_data *data);
-
 
 #endif

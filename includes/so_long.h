@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:58:01 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/18 21:13:59 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:27:32 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../libft/includes/libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
-
 
 # define BLOCK_SIZE 50
 
@@ -36,13 +35,11 @@
 # define RIGHT 100
 # define RESTART 114
 
-
 typedef struct coordinate
 {
 	size_t	row;
 	size_t	column;
 }	t_coord;
-
 
 typedef struct s_data
 {
@@ -64,7 +61,6 @@ typedef struct s_data
 
 }	t_data;
 
-
 void	ft_error(int error_type);
 void	print_map(t_data *data);
 
@@ -82,7 +78,7 @@ int		wall_check(t_data *data);
 int		char_check(t_data *data);
 int		map_solve(t_data *data, char **map_clone);
 
-int	count_element(t_data *data, char c, char **map);
+int		count_element(t_data *data, char c, char **map);
 t_coord	find_element(t_data *data, char c);
 int		can_move(t_data *data, int direction);
 
@@ -92,7 +88,6 @@ int		on_keypress(int keysymm, t_data *data);
 void	so_long(t_data *data);
 void	free_data(t_data *data);
 void	end_game(t_data *data);
-
 
 void	draw_window(t_data *data);
 
