@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:34:22 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/18 22:57:46 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:22:28 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ char	*trim_mem(char *mem, int finder)
 	return (new);
 }
 
-int	fill_mem(int fd, int *finder, char **mem)
+int	fill_mem(int fd, int *finder, char **mem, int cursor)
 {
 	char	*buf;
-	int		cursor;
 	char	*temp;
 
-	cursor = -1;
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (-1);
@@ -96,10 +94,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		if (mem)
-		{
 			free (mem);
-			mem = NULL;
-		}
 		return (NULL);
 	}
 	if (!mem)
@@ -107,12 +102,12 @@ char	*get_next_line(int fd)
 	if (!mem)
 		return (NULL);
 	finder = ft_strchr_pos(mem, '\n');
-	if (fill_mem(fd, &finder, &mem) == -1)
+	if (fill_mem(fd, &finder, &mem, -1) == -1)
 	{
-    	if (mem)
-       		free(mem);
-    	mem = NULL;
-    	return NULL;
+		if (mem)
+			free(mem);
+		mem = NULL;
+		return (NULL);
 	}
 	if (ft_strlen(mem) == 0)
 		return (free_str(&mem));
