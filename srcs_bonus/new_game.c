@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:22:04 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/09/19 04:35:20 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:35:43 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ t_data	*new_game(t_coord *dimension)
 	data->map = init_map(dimension);
 	if (!(data->map))
 		return (free_data(data), NULL);
-	ft_printf("map stored in data succesfully\n");
 	data->gamer_pos = (t_coord *)malloc(sizeof (t_coord));
 	if (!(data->gamer_pos))
 		return (NULL);
@@ -105,7 +104,5 @@ t_data	*new_game(t_coord *dimension)
 	data->move_count = 0;
 	data->pxl = BLOCK_SIZE;
 	data->pos.row = 0;
-	data->pos.column = 0;
-	ft_printf("data allocated succesfully\n");
-	return (data);
+	return (data->pos.column = 0, data);
 }

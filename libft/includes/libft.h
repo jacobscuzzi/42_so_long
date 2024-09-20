@@ -6,7 +6,7 @@
 /*   By: jbaumfal <jbaumfal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:08:20 by jbaumfal          #+#    #+#             */
-/*   Updated: 2024/08/18 13:56:13 by jbaumfal         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:32:37 by jbaumfal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <fcntl.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
-
 
 typedef struct s_list
 {
